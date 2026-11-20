@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: gorransproxy
+    runtime: node
+    plan: free
+    buildCommand: "echo no build step"
+    startCommand: node server.js
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: TRUST_PROXY_HOPS
+        value: "1"
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ACCESS_CODES
+        sync: false
+      - key: ALLOWED_HOSTS
+        value: wikipedia.org,wikimedia.org,wikisource.org,wolnelektury.pl,gutenberg.org,gov.pl,example.com,example.org

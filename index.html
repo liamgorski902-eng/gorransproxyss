@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gorransproxy 🇵🇱🦫 – a small web proxy with a Polish beaver</title>
+  <meta name="description" content="Gorransproxy: open approved websites through a secure proxy, search the web and jump to popular destinations.">
+  <meta name="theme-color" content="#dc143c">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <a class="skip" href="#browse">Skip to browsing</a>
+
+  <!-- Top announcement bar -->
+  <div class="topbar" role="note">
+    <div class="wrap topbar-inner">
+      <span class="mini-flag" aria-hidden="true"></span>
+      <p data-i18n="topbar">Witamy! Welcome to Gorransproxy – a small, locked-down web proxy with a Polish beaver.</p>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="logo logo-sm" href="/" aria-label="Gorransproxy home">
+        <svg class="logo-mark" aria-hidden="true"><use href="/assets/sprite.svg#logo-mark"></use></svg>
+        <span class="logo-text"><span class="logo-a">Gorrans</span><span class="logo-b">proxy</span></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#help" data-i18n="nav.help">Help</a>
+        <label class="lang">
+          <span class="sr-only" data-i18n="nav.language">Language</span>
+          <select id="lang" aria-label="Language">
+            <option value="en">English</option>
+            <option value="pl">Polski</option>
+            <option value="sv">Svenska</option>
+          </select>
+        </label>
+      </nav>
+    </div>
+    <div class="ribbon" aria-hidden="true"></div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-spacer" aria-hidden="true"></div>
+        <div class="hero-text">
+          <a class="logo logo-xl" href="/" aria-label="Gorransproxy">
+            <svg class="logo-mark" aria-hidden="true"><use href="/assets/sprite.svg#logo-mark"></use></svg>
+            <span class="logo-text"><span class="logo-a">Gorrans</span><span class="logo-b">proxy</span></span>
+          </a>
+          <h1 data-i18n="hero.title">Welcome to Gorransproxy</h1>
+          <p class="lead" data-i18n="hero.desc">Open approved websites through a secure server-side proxy, search the web, or jump straight to popular destinations – all in one tidy place, guarded by one very busy beaver.</p>
+        </div>
+        <div class="mascot-wrap">
+          <span class="bubble" aria-hidden="true">Cześć!</span>
+          <img class="mascot" src="/assets/beaver.svg" width="260" height="250" alt="Cartoon beaver holding a Polish flag">
+        </div>
+      </div>
+    </section>
+
+    <!-- Discover more -->
+    <section class="wrap discover" aria-labelledby="discover-title">
+      <div class="panel">
+        <h2 id="discover-title" class="eyebrow" data-i18n="discover.title">Discover more</h2>
+        <ul class="discover-list">
+          <li>
+            <a href="#browse" data-goto="proxy">
+              <span class="d-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg></span>
+              <span><strong data-i18n="discover.browse.t">Online web browsing</strong><small data-i18n="discover.browse.d">Open approved sites in a clean, script-free viewer.</small></span>
+            </a>
+          </li>
+          <li>
+            <a href="#browse" data-goto="unblocker">
+              <span class="d-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></span>
+              <span><strong data-i18n="discover.search.t">Search the web</strong><small data-i18n="discover.search.d">Run a Google search in one click.</small></span>
+            </a>
+          </li>
+          <li>
+            <a href="#shortcuts" data-goto="shortcuts">
+              <span class="d-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg></span>
+              <span><strong data-i18n="discover.dest.t">Popular destinations</strong><small data-i18n="discover.dest.d">Shortcuts to video, games and handy tools.</small></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Main browsing area -->
+    <section id="browse" class="wrap browse" aria-label="Browse">
+      <div class="card">
+        <div class="tabs" role="tablist" aria-label="Browsing mode">
+          <button class="tab" role="tab" id="tab-proxy" aria-selected="true" aria-controls="panel-proxy" data-i18n="tab.proxy">Proxy mode</button>
+          <button class="tab" role="tab" id="tab-unblocker" aria-selected="false" aria-controls="panel-unblocker" tabindex="-1" data-i18n="tab.unblocker">Unblocker mode</button>
+        </div>
+
+        <!-- Proxy mode -->
+        <div class="tab-panel" id="panel-proxy" role="tabpanel" aria-labelledby="tab-proxy">
+          <form id="proxy-form" novalidate>
+            <label class="field-label" for="proxy-url" data-i18n="proxy.label">Enter a web address</label>
+            <div class="go-row">
+              <input id="proxy-url" name="url" type="text" inputmode="url" enterkeyhint="go" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://pl.wikipedia.org">
+              <button class="go" type="submit" data-i18n="proxy.go">Go</button>
+            </div>
+            <p class="form-error" id="proxy-error" role="alert" hidden></p>
+          </form>
+
+          <div class="status-row">
+            <span class="badge" id="auth-badge"></span>
+            <button class="link-btn" type="button" id="auth-btn" hidden></button>
+          </div>
+
+          <p class="hint" data-i18n="proxy.hint">Proxy mode fetches pages on the server, strips scripts and shows a safe read-only copy. Only the sites below are allowed.</p>
+          <ul class="chips" id="allowed-chips" aria-label="Allowed sites"></ul>
+
+          <div class="viewer" id="viewer" hidden>
+            <div class="viewer-bar">
+              <span class="viewer-lock" aria-hidden="true"></span>
+              <output id="viewer-url" class="viewer-url"></output>
+              <button type="button" class="mini-btn" id="viewer-reload" data-i18n="viewer.reload">Reload</button>
+              <a class="mini-btn" id="viewer-open" target="_blank" rel="noopener noreferrer" href="#" data-i18n="viewer.open">Open original ↗</a>
+              <button type="button" class="mini-btn" id="viewer-close" data-i18n="viewer.close">Close</button>
+            </div>
+            <iframe id="viewer-frame" title="Proxied page" sandbox="" referrerpolicy="no-referrer"></iframe>
+          </div>
+        </div>
+
+        <!-- Unblocker mode -->
+        <div class="tab-panel" id="panel-unblocker" role="tabpanel" aria-labelledby="tab-unblocker" hidden>
+          <form id="search-form" novalidate>
+            <label class="field-label" for="search-q" data-i18n="unb.label">Search the web</label>
+            <div class="go-row">
+              <input id="search-q" name="q" type="search" enterkeyhint="search" autocomplete="off" spellcheck="false" placeholder="Search Google…" data-i18n-placeholder="unb.placeholder">
+              <button class="go" type="submit" data-i18n="proxy.go">Go</button>
+            </div>
+          </form>
+          <h3 class="eyebrow mini" data-i18n="unb.popular">Quick links</h3>
+          <ul class="tile-grid compact" id="quick-grid"></ul>
+          <p class="note" data-i18n="unb.note">Unblocker mode opens searches and sites directly in a new tab. It does not bypass school, workplace or network filters.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Popular shortcuts -->
+    <section id="shortcuts" class="wrap shortcuts" aria-labelledby="sc-title">
+      <div class="section-head">
+        <div>
+          <h2 id="sc-title" data-i18n="sc.title">Popular shortcuts</h2>
+          <p class="muted" data-i18n="sc.sub">Each tile opens the real site in a new tab.</p>
+        </div>
+        <div class="filters" id="filters" role="group" aria-label="Filter shortcuts"></div>
+      </div>
+      <ul class="tile-grid" id="shortcut-grid"></ul>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="wrap info" aria-labelledby="about-title">
+      <div class="card pad">
+        <h2 id="about-title" data-i18n="about.title">About Gorransproxy</h2>
+        <p data-i18n="about.p1">Gorransproxy is a small, dependency-free web proxy with a Polish soul and a hard-working beaver mascot. It was built to show what a responsible proxy looks like.</p>
+        <p data-i18n="about.p2">Proxy mode only talks to a short list of approved websites, requires an access code, limits how fast anyone can browse, and refuses to reach private networks.</p>
+        <ul class="pillars">
+          <li><strong data-i18n="about.l1t">Approved sites only</strong><span data-i18n="about.l1d">Every destination is checked against an allowlist.</span></li>
+          <li><strong data-i18n="about.l2t">Scripts removed</strong><span data-i18n="about.l2d">Pages are cleaned and sandboxed before you see them.</span></li>
+          <li><strong data-i18n="about.l3t">Private and rate-limited</strong><span data-i18n="about.l3d">Access codes and request limits keep abuse out.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Help -->
+    <section id="help" class="wrap info" aria-labelledby="help-title">
+      <div class="card pad">
+        <h2 id="help-title" data-i18n="help.title">Help</h2>
+        <details><summary data-i18n="help.q1">Why can't I open a site in Proxy mode?</summary><p data-i18n="help.a1">Proxy mode only opens sites on the server's allowlist, shown under the address bar. The owner can add more with the ALLOWED_HOSTS setting.</p></details>
+        <details><summary data-i18n="help.q2">Why do pages look plain?</summary><p data-i18n="help.a2">Scripts are removed for safety, so interactive features, logins and videos do not work. Text, images and basic styling do.</p></details>
+        <details><summary data-i18n="help.q3">What is Unblocker mode?</summary><p data-i18n="help.a3">A convenient search box and shortcut grid. It opens Google and popular sites directly in a new tab; it does not bypass any network restrictions.</p></details>
+        <details><summary data-i18n="help.q4">Can I use YouTube, TikTok or Snapchat in Proxy mode?</summary><p data-i18n="help.a4">No. Those services need scripts, logins and streaming, which this proxy intentionally blocks. Use the shortcuts to open them directly.</p></details>
+        <details><summary data-i18n="help.q5">I forgot my access code.</summary><p data-i18n="help.a5">Ask whoever runs this Gorransproxy server. Codes are set with the ACCESS_CODES setting.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="ribbon" aria-hidden="true"></div>
+    <p class="wrap" data-i18n="footer">Made with 🦫 in Polish colours. Gorransproxy is not affiliated with any site listed here.</p>
+  </footer>
+
+  <!-- Sign-in dialog -->
+  <dialog id="login-dialog" aria-labelledby="login-title">
+    <form id="login-form" novalidate>
+      <h2 id="login-title" data-i18n="login.title">Enter access code</h2>
+      <p class="muted" data-i18n="login.desc">Proxy mode is private. Ask the site owner for an access code.</p>
+      <label class="field-label" for="login-code" data-i18n="login.label">Access code</label>
+      <input id="login-code" class="plain-input" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false">
+      <p class="form-error" id="login-error" role="alert" hidden></p>
+      <div class="dialog-actions">
+        <button type="button" class="ghost" id="login-cancel" data-i18n="login.cancel">Cancel</button>
+        <button type="submit" class="go small" data-i18n="auth.signin">Sign in</button>
+      </div>
+    </form>
+  </dialog>
+
+  <noscript><p class="noscript">Gorransproxy needs JavaScript for its browsing tools. The shortcuts below still work on most browsers.</p></noscript>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
